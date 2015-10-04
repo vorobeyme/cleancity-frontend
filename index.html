@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>cleancity</title>
+</head>
+<body>
+
+    <div id="locations"><ol></ol></div>
+
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: 'http://cleancity.ml/locations',
+            crossDomain: true,
+            dataType: 'jsonp',
+            success: function(res){
+                // console.log(res);
+
+                $('#locations ol').empty();
+                $.each(res, function(idx, value) {
+                    $('#locations ol').append('<li id="'+ value._id +'">' + value.address + '</li>');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
