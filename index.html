@@ -1,28 +1,53 @@
 <!doctype html>
 <html>
 <head>
-    <title>cleancity</title>
+    <title>Cleancity</title>
+
+    <script src="app/vendor/underscore.js"></script>
+    <script src="app/vendor/jquery.js"> </script>
+    <script src="app/vendor/backbone.js"></script>
 </head>
 <body>
+
+    <div id="header"></div>
+    <div id="sidebar"></div>
+    <div id="content">
+        <h2>Welcome to CleanCity</h2>
+    </div>
 
     <div id="locations"><ol></ol></div>
 
     <script>
-        $.ajax({
-            type: 'GET',
-            url: 'http://cleancity.ml/locations',
-            crossDomain: true,
-            dataType: 'jsonp',
-            success: function(res){
-                // console.log(res);
 
-                $('#locations ol').empty();
-                $.each(res, function(idx, value) {
-                    $('#locations ol').append('<li id="'+ value._id +'">' + value.address + '</li>');
-                });
-            }
-        });
+        (function () {
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://cleancity.ml/locations',
+                crossDomain: true,
+                dataType: 'jsonp',
+                success: function (res) {
+                    // console.log(res);
+
+                    $('#locations ol').empty();
+                    $.each(res, function (idx, value) {
+                        $('#locations ol').append('<li id="' + value._id + '">' + value.address + '</li>');
+                    });
+                }
+            });
+        })();
     </script>
+
+    
+    <script src="app/js/app.js"></script>
+    <script src="app/js/config.js"></script>
+    <script src="app/js/router.js"></script>
+    <script src="app/js/helpers.js"></script>
+
+    <script src="app/js/collections/locations.js"></script>
+    <script src="app/js/models/location.js"></script>
+    <script src="app/js/views/locationlist.js"></script>
+    <script src="app/js/views/header.js"></script>
 
 </body>
 </html>
